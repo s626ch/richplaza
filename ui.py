@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from os import path
+from PIL import Image, ImageTk
 
 
 class UserInterface:
@@ -14,7 +15,11 @@ class UserInterface:
         self.root.eval('tk::PlaceWindow . center')
         self.root.title("Rich Plaza")
         self.root.geometry("470x180")
-        self.root.iconbitmap('resources/favicon.ico')
+        iconPath = path.join(path.dirname(__file__), "favicon-32x32.png")
+        icImg = Image.open(iconPath)
+        icPho = ImageTk.PhotoImage(icImg)
+        self.root.iconphoto(True, icPho)
+        #self.root.iconbitmap(path.join(path.dirname(__file__), "favicon.ico"))
         self.root.resizable(False, False)
         self.playing = player.is_playing()
         self.end = 0
